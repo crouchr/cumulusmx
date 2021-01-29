@@ -15,7 +15,7 @@ LABEL Maintainer="Optoisolated"
 
 # Config Info
 ARG DEBIAN_FRONTEND=noninteractive
-ENV TZ=Australia/Brisbane
+ENV TZ=Europe/London
 SHELL ["/bin/bash", "-c"]
 
 # Install Nginx.
