@@ -9,8 +9,10 @@
 # To run:    docker run --name=MXWeather -p 8998:8998 -p 8080:80 -v /opt/MXWeather/data:/opt/CumulusMX/data -v /opt/MXWeather/backup:/opt/CumulusMX/backup -v /opt/MXWeather/log:/var/log/nginx -v /opt/MXWeather/Cumulus.ini:/opt/CumulusMX/Cumulus.ini --device=/dev/hidraw0 -d ubuntu:MXWeather
 # Weather data, logs, and settings are persistent outside of the container
 
-# Pull base image.
-FROM ubuntu
+# Pull base image - focal = 20.04 LTS.
+#FROM ubuntu
+FROM ubuntu:focal
+
 LABEL Maintainer="MetMiniWX"
 
 # Config Info
