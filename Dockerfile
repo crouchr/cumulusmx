@@ -1,7 +1,7 @@
 #
 # MXWeather Dockerfile
 #
-# https://github.com/Optoisolated/MXWeather
+# see https://github.com/Optoisolated/MXWeather
 #
 # Note: in order to prevent docker from turning Cumulus.ini into a folder, you need to touch it first
 # eg. touch /opt/MXWeather/Cumulus.ini
@@ -11,7 +11,7 @@
 
 # Pull base image.
 FROM ubuntu:focal
-LABEL Maintainer="Optoisolated"
+LABEL Maintainer="MetMiniWX"
 
 # Config Info
 ARG DEBIAN_FRONTEND=noninteractive
@@ -31,7 +31,7 @@ RUN \
 
 # Install Packages
 RUN apt-get update && \
-    apt-get install -y curl tzdata unzip libudev-dev git python3-virtualenv
+    apt-get install -y curl tzdata joe ncdu unzip libudev-dev git python3-virtualenv
 
 # Install Mono
 RUN apt-get update && \
@@ -52,9 +52,6 @@ RUN \
   mkdir /opt/CumulusMX && \
   unzip /tmp/CumulusMX.zip -d /opt && \
   chmod +x /opt/CumulusMX/CumulusMX.exe
-
-# Test File
-#COPY ./index.htm /opt/CumulusMX/web/
 
 # Copy the Web Service Files into the Published Web Folder
 RUN cp -r /opt/CumulusMX/webfiles/* /opt/CumulusMX/web/
