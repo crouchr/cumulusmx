@@ -46,11 +46,10 @@ RUN echo "deb http://download.mono-project.com/repo/ubuntu bionic/snapshots/5.20
 # Configure TZData
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-# *** start of my customisation ***
-RUN curl -L https://github.com/cumulusmx/CumulusMX/releases/download/b3116/CumulusMXDist3116.zip --output /tmp/CumulusMX.zip
-# *** end of my customisation ***
-
-RUN mkdir /opt/CumulusMX && \
+# Download Latest CumulusMX
+RUN \
+  curl -L $(curl -s https://api.github.com/repos/cumulusmx/CumulusMX/releases/latest | grep browser_ | cut -d\" -f4) --output /tmp/CumulusMX.zip && \
+  mkdir /opt/CumulusMX && \
   unzip /tmp/CumulusMX.zip -d /opt && \
   chmod +x /opt/CumulusMX/CumulusMX.exe
 
