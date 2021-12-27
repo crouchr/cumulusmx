@@ -61,7 +61,7 @@ RUN mkdir /opt/CumulusMX && \
 RUN cp -r /opt/CumulusMX/webfiles/* /opt/CumulusMX/web/
 
 # Define mountable directories.
-VOLUME ["/opt/CumulusMX/data","/opt/CumulusMX/backup","/opt/CumulusMX/Reports","/var/log/nginx"]
+#VOLUME ["/opt/CumulusMX/data","/opt/CumulusMX/backup","/opt/CumulusMX/Reports","/var/log/nginx"]
 
 # Add Start Script# Test File
 COPY ./MXWeather.sh /opt/CumulusMX/
@@ -79,11 +79,12 @@ RUN touch /opt/CumulusMX/realtime.txt && \
 WORKDIR /opt/CumulusMX/
 RUN chmod +x /opt/CumulusMX/MXWeather.sh
 
-CMD ["./MXWeather.sh"]
+#CMD ["./MXWeather.sh"]
+CMD ["tail", "-f", "/dev/null"]
 
 # How to bail
 #STOPSIGNAL SIGTERM
 
 # Expose ports.
-EXPOSE 80
-EXPOSE 8998
+#EXPOSE 80
+#EXPOSE 8998
