@@ -38,7 +38,8 @@ RUN apt-get update && \
     apt-get install -y curl && \
     rm -rf /var/lib/apt/lists/*
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
-RUN echo "deb http://download.mono-project.com/repo/ubuntu bionic/snapshots/5.20.1 main" > /etc/apt/sources.list.d/mono-xamarin.list && \
+#RUN echo "deb http://download.mono-project.com/repo/ubuntu bionic/snapshots/5.20.1 main" > /etc/apt/sources.list.d/mono-xamarin.list && \
+RUN echo "deb http://download.mono-project.com/repo/ubuntu focal/snapshots/6.12.0 main" > /etc/apt/sources.list.d/mono-xamarin.list && \
     apt-get update && \
     apt-get install -y mono-devel ca-certificates-mono fsharp mono-vbnc nuget && \
     rm -rf /var/lib/apt/lists/*
@@ -48,7 +49,8 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # https://github.com/cumulusmx/CumulusMX/releases to get filename and release info
 # *** start of my customisation ***
-RUN curl -L https://github.com/cumulusmx/CumulusMX/releases/download/b3116/CumulusMXDist3116.zip --output /tmp/CumulusMX.zip
+#RUN curl -L https://github.com/cumulusmx/CumulusMX/releases/download/b3116/CumulusMXDist3116.zip --output /tmp/CumulusMX.zip
+RUN curl -L https://github.com/cumulusmx/CumulusMX/releases/download/b3160/CumulusMXDist3160.zip --output /tmp/CumulusMX.zip
 # *** end of my customisation ***
 
 RUN mkdir /opt/CumulusMX && \
